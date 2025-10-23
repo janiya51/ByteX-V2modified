@@ -119,6 +119,14 @@
                         <input type="tel" class="form-control" id="phoneNumber" th:field="*{phoneNumber}">
                     </div>
                     <div class="mb-3">
+                        <label for="themeSelector" class="form-label">Theme</label>
+                        <select id="themeSelector" class="form-select">
+                            <option value="light-mode">Light</option>
+                            <option value="dark-mode">Dark</option>
+                            <option value="blue-mode">Blue</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
                         <label for="password" class="form-label">New Password (optional)</label>
                         <input type="password" class="form-control" id="password" name="password">
                         <small class="form-text text-muted">Leave blank if you don't want to change it.</small>
@@ -140,6 +148,21 @@
   AOS.init({
       duration: 800,
       once: true
+  });
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const themeSelector = document.getElementById('themeSelector');
+    const body = document.body;
+
+    const savedTheme = localStorage.getItem('theme') || 'light-mode';
+    body.className = savedTheme;
+    themeSelector.value = savedTheme;
+
+    themeSelector.addEventListener('change', () => {
+      const selectedTheme = themeSelector.value;
+      body.className = selectedTheme;
+      localStorage.setItem('theme', selectedTheme);
+    });
   });
 </script>
 </body>
