@@ -96,6 +96,11 @@ public class StaffController {
     public String addResponse(@PathVariable Long id, @RequestParam String message, HttpSession session, RedirectAttributes redirectAttributes) {
         if (isNotStaff(session, redirectAttributes)) return "redirect:/login";
 
+        if (message == null || message.trim().length() < 10) {
+            redirectAttributes.addFlashAttribute("error", "Response message must be at least 10 characters long.");
+            return "redirect:/staff/tickets/" + id;
+        }
+
         User staffMember = (User) session.getAttribute("user");
         try {
             ticketService.addResponseToTicket(id, message, staffMember);
