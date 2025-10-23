@@ -25,6 +25,13 @@ body {
   overflow-x: hidden;
 }
 
+.light-mode {
+  --primary-color: #f8f9fa;
+  --secondary-color: #ffffff;
+  --font-color: #212529;
+  --background-color: #e9ecef;
+}
+
 .dark-mode {
   --primary-color: #1e1e2f;
   --secondary-color: #27293d;
@@ -66,7 +73,7 @@ body {
 }
 
 .login-form, .profile-form {
-  background-color: var(--primary-color);
+  background-color: var(--secondary-color);
   padding: 40px;
   border-radius: 12px;
   box-shadow: var(--box-shadow);
@@ -76,9 +83,25 @@ body {
 }
 
 .form-control, .form-select {
-  background-color: var(--secondary-color);
+  background-color: var(--primary-color);
   color: var(--font-color);
   border: 1px solid var(--input-border-color);
+  border-radius: 8px;
+  height: 48px;
+  padding: 0 15px;
+}
+.form-control:focus, .form-select:focus {
+  background-color: var(--primary-color);
+  color: var(--font-color);
+  border-color: var(--input-focus-border-color);
+  box-shadow: 0 0 0 0.2rem rgba(0, 157, 99, 0.25);
+}
+
+.btn {
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-weight: 600;
+  transition: all 0.3s ease;
 }
 
 .btn-primary {
@@ -86,23 +109,70 @@ body {
   border-color: var(--primary-accent-color);
 }
 
+.dashboard-container {
+  display: flex;
+  width: 100%;
+  min-height: 100vh;
+}
+
 .sidebar {
+  width: 260px;
   background-color: var(--sidebar-bg-color);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  box-shadow: 5px 0 15px rgba(0,0,0,0.2);
+}
+
+.sidebar-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.sidebar-nav {
+  flex-grow: 1;
 }
 
 .nav-link {
   color: var(--sidebar-text-color);
+  padding: 12px 15px;
+  border-radius: 8px;
+  margin-bottom: 5px;
+  transition: all 0.3s ease;
+}
+
+.nav-link:hover {
+  background-color: var(--primary-color);
+  color: var(--font-color);
 }
 
 .nav-link.active {
   background-color: var(--sidebar-active-color);
+  color: var(--font-color);
+  font-weight: 600;
+}
+
+.sidebar-footer {
+  border-top: 1px solid var(--input-border-color);
+  padding-top: 15px;
 }
 
 .main-content {
+  flex-grow: 1;
+  padding: 40px;
   background-color: var(--background-color);
 }
 
 .card {
+  border: none;
+  border-radius: 12px;
   background-color: var(--secondary-color);
   color: var(--font-color);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
 }
